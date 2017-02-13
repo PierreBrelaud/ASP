@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SondageSoireeModelsEntityStoreContainer" CdmEntityContainer="SoireeContext">
+    <EntitySetMapping Name="Eleves">
+      <EntityTypeMapping TypeName="SondageSoiree.Models.Entity.Eleve">
+        <MappingFragment StoreEntitySet="Eleve">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Prenom" ColumnName="Prenom" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Restaurants">
+      <EntityTypeMapping TypeName="SondageSoiree.Models.Entity.Restaurant">
+        <MappingFragment StoreEntitySet="Restaurant">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Adresse" ColumnName="Adresse" />
+          <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sondages">
+      <EntityTypeMapping TypeName="SondageSoiree.Models.Entity.Sondage">
+        <MappingFragment StoreEntitySet="Sondage">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Votes">
+      <EntityTypeMapping TypeName="SondageSoiree.Models.Entity.Vote">
+        <MappingFragment StoreEntitySet="Vote">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="IdEtudiant" ColumnName="IdEtudiant" />
+          <ScalarProperty Name="IdResto" ColumnName="IdResto" />
+          <ScalarProperty Name="IdSondage" ColumnName="IdSondage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

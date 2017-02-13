@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="fbe49cdf1ed64b1facb33096abaf2bb5" Name="Diagram1" ZoomLevel="110">
+        <EntityTypeShape EntityType="SondageSoiree.Models.Entity.Eleve" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SondageSoiree.Models.Entity.Restaurant" Width="1.5" PointX="5.375" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SondageSoiree.Models.Entity.Sondage" Width="1.5" PointX="1.375" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="SondageSoiree.Models.Entity.Vote" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <AssociationConnector Association="SondageSoiree.Models.Entity.FK_Vote_Eleve" ManuallyRouted="false" />
+        <AssociationConnector Association="SondageSoiree.Models.Entity.FK_Vote_Restaurant" ManuallyRouted="false" />
+        <AssociationConnector Association="SondageSoiree.Models.Entity.FK_Vote_Sondage" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
