@@ -15,6 +15,11 @@ namespace SondageSoiree.Models
             s = new SoireeContext();
         }
 
+        public void Dispose()
+        {
+            s.Dispose();
+        }
+
         public void AjouterEtudiant(Eleve e)
         {
             using (var ctx = new SoireeContext())
@@ -50,15 +55,14 @@ namespace SondageSoiree.Models
 
         }
 
-        public int CreerSondage(DateTime date)
+        public void CreerSondage(Sondage sondage)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Dispose()
-        {
+            Sondage so = s.Sondages.Add(sondage);
+            s.SaveChanges();
             s.Dispose();
         }
+
+
 
         public void ModifierRestaurant(int idResto, string nom, string adresse, string telephone, string email)
         {
@@ -73,6 +77,18 @@ namespace SondageSoiree.Models
             s.Dispose();
         }
 
+        public void ModifierCompte(int id, string nom, string prenom, string password)
+        {
+            Eleve e = s.Eleves.First(c => c.Id == id);
+
+            e.Nom = nom;
+            e.Prenom = prenom;
+            e.Password = Crypto.HashPassword(password);
+
+            s.SaveChanges();
+            s.Dispose();
+        }
+
         public Eleve RenvoieEtudiant(string nom)
         {
             Eleve e = s.Eleves.First(c => c.Nom == nom);
@@ -81,7 +97,9 @@ namespace SondageSoiree.Models
 
         public Eleve RenvoieEtudiant(int idEtudiant)
         {
-            throw new NotImplementedException();
+            Eleve e = s.Eleves.FirstOrDefault(c => c.Id == idEtudiant);
+            return e;
+            
         }
 
         public Restaurant RenvoieRestaurant(int idRestaurant)
@@ -112,6 +130,19 @@ namespace SondageSoiree.Models
             return r;
         }
 
+        public IList<Sondage> RenvoieTousLesSondages()
+        {
+            List<Sondage> s = new List<Sondage>();
+            using (var ctx = new SoireeContext())
+            {
+                foreach (var sondage in ctx.Sondages)
+                {
+                    s.Add(sondage);
+                }
+            }
+            return s;
+        }
+
         public bool RestaurantExist(string nom)
         {
             using (var ctx = new SoireeContext())
@@ -122,6 +153,17 @@ namespace SondageSoiree.Models
                 else
                     return false;
             }
+        }
+
+        public bool SondageExist(string nom)
+        {
+            int result = s.Sondages.Count(c => c.Nom == nom);
+            if (result != 0)
+                return true;
+            else
+                return false;
+            s.Dispose();
+
         }
 
         public bool RestaurantExist(string nom, int id)

@@ -26,6 +26,7 @@
     <EntitySetMapping Name="Sondages">
       <EntityTypeMapping TypeName="SondageSoiree.Models.Entity.Sondage">
         <MappingFragment StoreEntitySet="Sondage">
+          <ScalarProperty Name="Nom" ColumnName="Nom" />
           <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="Date" ColumnName="Date" />
         </MappingFragment>
@@ -41,5 +42,7 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SPAbonne_Append" FunctionName="SondageSoiree.Models.Entity.Store.SPAbonne_Append" />
+    <FunctionImportMapping FunctionImportName="SPhistovitesse_Append" FunctionName="SondageSoiree.Models.Entity.Store.SPhistovitesse_Append" />
   </EntityContainerMapping>
 </Mapping>

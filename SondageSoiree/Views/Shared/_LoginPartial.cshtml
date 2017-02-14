@@ -1,11 +1,12 @@
 ﻿@using Microsoft.AspNet.Identity
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Compte", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
     {
 
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Bonjour " + User.Identity.GetUserName() + " !", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })</li>
+        <li>@Html.ActionLink("Bonjour " + User.Identity.GetUserName() + " !", "ModifierCompte", "Compte", new { id = User.Identity.GetUserId() })</li>
         <li>@Html.ActionLink("Se déconnecter", "LogOff", "Compte")</li>
     </ul>
     }

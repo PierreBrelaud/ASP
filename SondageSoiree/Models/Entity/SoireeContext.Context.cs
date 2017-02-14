@@ -12,6 +12,8 @@ namespace SondageSoiree.Models.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class SoireeContext : DbContext
     {
@@ -29,5 +31,75 @@ namespace SondageSoiree.Models.Entity
         public virtual DbSet<Restaurant> Restaurants { get; set; }
         public virtual DbSet<Sondage> Sondages { get; set; }
         public virtual DbSet<Vote> Votes { get; set; }
+    
+        public virtual int SPAbonne_Append(string aBO_PSEUDO, string aBO_MOTPASSE, string aBO_MEL, string aBO_NOM, string aBO_PRENOM, string aBO_ADRLIGNE1, string aBO_ADRLIGNE2, string aBO_CP, string aBO_VILLE, string aBO_ETAT, Nullable<int> pAY_ID, string aBO_TEL, ObjectParameter iD)
+        {
+            var aBO_PSEUDOParameter = aBO_PSEUDO != null ?
+                new ObjectParameter("ABO_PSEUDO", aBO_PSEUDO) :
+                new ObjectParameter("ABO_PSEUDO", typeof(string));
+    
+            var aBO_MOTPASSEParameter = aBO_MOTPASSE != null ?
+                new ObjectParameter("ABO_MOTPASSE", aBO_MOTPASSE) :
+                new ObjectParameter("ABO_MOTPASSE", typeof(string));
+    
+            var aBO_MELParameter = aBO_MEL != null ?
+                new ObjectParameter("ABO_MEL", aBO_MEL) :
+                new ObjectParameter("ABO_MEL", typeof(string));
+    
+            var aBO_NOMParameter = aBO_NOM != null ?
+                new ObjectParameter("ABO_NOM", aBO_NOM) :
+                new ObjectParameter("ABO_NOM", typeof(string));
+    
+            var aBO_PRENOMParameter = aBO_PRENOM != null ?
+                new ObjectParameter("ABO_PRENOM", aBO_PRENOM) :
+                new ObjectParameter("ABO_PRENOM", typeof(string));
+    
+            var aBO_ADRLIGNE1Parameter = aBO_ADRLIGNE1 != null ?
+                new ObjectParameter("ABO_ADRLIGNE1", aBO_ADRLIGNE1) :
+                new ObjectParameter("ABO_ADRLIGNE1", typeof(string));
+    
+            var aBO_ADRLIGNE2Parameter = aBO_ADRLIGNE2 != null ?
+                new ObjectParameter("ABO_ADRLIGNE2", aBO_ADRLIGNE2) :
+                new ObjectParameter("ABO_ADRLIGNE2", typeof(string));
+    
+            var aBO_CPParameter = aBO_CP != null ?
+                new ObjectParameter("ABO_CP", aBO_CP) :
+                new ObjectParameter("ABO_CP", typeof(string));
+    
+            var aBO_VILLEParameter = aBO_VILLE != null ?
+                new ObjectParameter("ABO_VILLE", aBO_VILLE) :
+                new ObjectParameter("ABO_VILLE", typeof(string));
+    
+            var aBO_ETATParameter = aBO_ETAT != null ?
+                new ObjectParameter("ABO_ETAT", aBO_ETAT) :
+                new ObjectParameter("ABO_ETAT", typeof(string));
+    
+            var pAY_IDParameter = pAY_ID.HasValue ?
+                new ObjectParameter("PAY_ID", pAY_ID) :
+                new ObjectParameter("PAY_ID", typeof(int));
+    
+            var aBO_TELParameter = aBO_TEL != null ?
+                new ObjectParameter("ABO_TEL", aBO_TEL) :
+                new ObjectParameter("ABO_TEL", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPAbonne_Append", aBO_PSEUDOParameter, aBO_MOTPASSEParameter, aBO_MELParameter, aBO_NOMParameter, aBO_PRENOMParameter, aBO_ADRLIGNE1Parameter, aBO_ADRLIGNE2Parameter, aBO_CPParameter, aBO_VILLEParameter, aBO_ETATParameter, pAY_IDParameter, aBO_TELParameter, iD);
+        }
+    
+        public virtual int SPhistovitesse_Append(Nullable<decimal> vitessekm, Nullable<decimal> vitesseUnite, Nullable<int> idunite, ObjectParameter iD)
+        {
+            var vitessekmParameter = vitessekm.HasValue ?
+                new ObjectParameter("vitessekm", vitessekm) :
+                new ObjectParameter("vitessekm", typeof(decimal));
+    
+            var vitesseUniteParameter = vitesseUnite.HasValue ?
+                new ObjectParameter("vitesseUnite", vitesseUnite) :
+                new ObjectParameter("vitesseUnite", typeof(decimal));
+    
+            var iduniteParameter = idunite.HasValue ?
+                new ObjectParameter("idunite", idunite) :
+                new ObjectParameter("idunite", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("SPhistovitesse_Append", vitessekmParameter, vitesseUniteParameter, iduniteParameter, iD);
+        }
     }
 }

@@ -16,7 +16,7 @@ namespace SondageSoiree
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Restaurant", action = "Index", id = UrlParameter.Optional }
+                defaults: new { controller = "Sondage", action = "Index", id = UrlParameter.Optional }
             );
 
 

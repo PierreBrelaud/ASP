@@ -1,0 +1,41 @@
+﻿@model IEnumerable<SondageSoiree.Models.Entity.Sondage>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+
+<h3>Liste des sondages</h3>
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        @Html.ActionLink("Créer un nouveau sondage", "CreerSondage")
+    }
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Nom)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nom)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+
+        <td>
+            @Html.ActionLink("Voir", "Details", new { id=item.Id }) 
+        </td>
+    </tr>
+}
+
+</table>

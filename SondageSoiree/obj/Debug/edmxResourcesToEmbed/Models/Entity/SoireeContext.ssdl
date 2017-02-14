@@ -26,6 +26,7 @@
     </Key>
     <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Nom" Type="varchar" MaxLength="150" />
   </EntityType>
   <EntityType Name="Vote">
     <Key>
@@ -36,6 +37,14 @@
     <Property Name="IdResto" Type="int" Nullable="false" />
     <Property Name="IdSondage" Type="int" Nullable="false" />
   </EntityType>
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'brelaudp.dbo.vAbonnes' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'brelaudp.dbo.vComptes' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'brelaudp.dbo.vPays' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+  <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'brelaudp.dbo.vUniteVitesse' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
   <Association Name="FK_Vote_Eleve">
     <End Role="Eleve" Type="Self.Eleve" Multiplicity="1" />
     <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
@@ -72,6 +81,27 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="SPAbonne_Append" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="ABO_PSEUDO" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_MOTPASSE" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_MEL" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_NOM" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_PRENOM" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_ADRLIGNE1" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_ADRLIGNE2" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_CP" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_VILLE" Type="varchar" Mode="In" />
+    <Parameter Name="ABO_ETAT" Type="varchar" Mode="In" />
+    <Parameter Name="PAY_ID" Type="int" Mode="In" />
+    <Parameter Name="ABO_TEL" Type="varchar" Mode="In" />
+    <Parameter Name="ID" Type="int" Mode="InOut" />
+  </Function>
+  <Function Name="SPhistovitesse_Append" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="vitessekm" Type="numeric" Mode="In" />
+    <Parameter Name="vitesseUnite" Type="numeric" Mode="In" />
+    <Parameter Name="idunite" Type="int" Mode="In" />
+    <Parameter Name="ID" Type="int" Mode="InOut" />
+  </Function>
   <EntityContainer Name="SondageSoireeModelsEntityStoreContainer">
     <EntitySet Name="Eleve" EntityType="Self.Eleve" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />

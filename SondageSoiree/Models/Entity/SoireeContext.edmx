@@ -31,6 +31,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Date" Type="date" Nullable="false" />
+          <Property Name="Nom" Type="varchar" MaxLength="150" />
         </EntityType>
         <EntityType Name="Vote">
           <Key>
@@ -41,6 +42,14 @@
           <Property Name="IdResto" Type="int" Nullable="false" />
           <Property Name="IdSondage" Type="int" Nullable="false" />
         </EntityType>
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'brelaudp.dbo.vAbonnes' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'brelaudp.dbo.vComptes' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'brelaudp.dbo.vPays' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
+        <!--Erreurs détectées durant la génération :
+avertissement 6002: La table/vue 'brelaudp.dbo.vUniteVitesse' n'a pas de clé primaire définie. La clé a été déduite et la définition a été créée en tant que table/vue en lecture seule.-->
         <Association Name="FK_Vote_Eleve">
           <End Role="Eleve" Type="Self.Eleve" Multiplicity="1" />
           <End Role="Vote" Type="Self.Vote" Multiplicity="*" />
@@ -77,6 +86,27 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="SPAbonne_Append" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="ABO_PSEUDO" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_MOTPASSE" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_MEL" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_NOM" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_PRENOM" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_ADRLIGNE1" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_ADRLIGNE2" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_CP" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_VILLE" Type="varchar" Mode="In" />
+          <Parameter Name="ABO_ETAT" Type="varchar" Mode="In" />
+          <Parameter Name="PAY_ID" Type="int" Mode="In" />
+          <Parameter Name="ABO_TEL" Type="varchar" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="InOut" />
+        </Function>
+        <Function Name="SPhistovitesse_Append" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="vitessekm" Type="numeric" Mode="In" />
+          <Parameter Name="vitesseUnite" Type="numeric" Mode="In" />
+          <Parameter Name="idunite" Type="int" Mode="In" />
+          <Parameter Name="ID" Type="int" Mode="InOut" />
+        </Function>
         <EntityContainer Name="SondageSoireeModelsEntityStoreContainer">
           <EntitySet Name="Eleve" EntityType="Self.Eleve" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Restaurant" EntityType="Self.Restaurant" Schema="dbo" store:Type="Tables" />
@@ -128,6 +158,7 @@
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
           <NavigationProperty Name="Votes" Relationship="Self.FK_Vote_Sondage" FromRole="Sondage" ToRole="Vote" />
+          <Property Name="Nom" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Vote">
           <Key>
@@ -194,6 +225,27 @@
             <End Role="Sondage" EntitySet="Sondages" />
             <End Role="Vote" EntitySet="Votes" />
           </AssociationSet>
+          <FunctionImport Name="SPAbonne_Append">
+            <Parameter Name="ABO_PSEUDO" Mode="In" Type="String" />
+            <Parameter Name="ABO_MOTPASSE" Mode="In" Type="String" />
+            <Parameter Name="ABO_MEL" Mode="In" Type="String" />
+            <Parameter Name="ABO_NOM" Mode="In" Type="String" />
+            <Parameter Name="ABO_PRENOM" Mode="In" Type="String" />
+            <Parameter Name="ABO_ADRLIGNE1" Mode="In" Type="String" />
+            <Parameter Name="ABO_ADRLIGNE2" Mode="In" Type="String" />
+            <Parameter Name="ABO_CP" Mode="In" Type="String" />
+            <Parameter Name="ABO_VILLE" Mode="In" Type="String" />
+            <Parameter Name="ABO_ETAT" Mode="In" Type="String" />
+            <Parameter Name="PAY_ID" Mode="In" Type="Int32" />
+            <Parameter Name="ABO_TEL" Mode="In" Type="String" />
+            <Parameter Name="ID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="SPhistovitesse_Append">
+            <Parameter Name="vitessekm" Mode="In" Type="Decimal" />
+            <Parameter Name="vitesseUnite" Mode="In" Type="Decimal" />
+            <Parameter Name="idunite" Mode="In" Type="Int32" />
+            <Parameter Name="ID" Mode="InOut" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
@@ -226,6 +278,7 @@
           <EntitySetMapping Name="Sondages">
             <EntityTypeMapping TypeName="SondageSoiree.Models.Entity.Sondage">
               <MappingFragment StoreEntitySet="Sondage">
+                <ScalarProperty Name="Nom" ColumnName="Nom" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Date" ColumnName="Date" />
               </MappingFragment>
@@ -241,6 +294,8 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="SPAbonne_Append" FunctionName="SondageSoiree.Models.Entity.Store.SPAbonne_Append" />
+          <FunctionImportMapping FunctionImportName="SPhistovitesse_Append" FunctionName="SondageSoiree.Models.Entity.Store.SPhistovitesse_Append" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

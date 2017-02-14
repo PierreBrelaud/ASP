@@ -225,6 +225,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\PhotoController.cs" />
     <Compile Include="Controllers\RestaurantController.cs" />
+    <Compile Include="Controllers\SondageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -255,12 +256,14 @@
     <Compile Include="Models\Entity\Sondage.cs">
       <DependentUpon>SoireeContext.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Entity\SondagePart.cs" />
     <Compile Include="Models\Entity\Vote.cs">
       <DependentUpon>SoireeContext.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DAL\IDal.cs" />
     <Compile Include="Models\Metadata\CompteMetadata.cs" />
     <Compile Include="Models\Metadata\RestaurantMetadata.cs" />
+    <Compile Include="Models\Metadata\SondageMetadata.cs" />
     <Compile Include="Models\Resultat.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -328,6 +331,9 @@
     <Content Include="Views\Restaurant\ModifierRestaurant.cshtml" />
     <Content Include="Views\Compte\Login.cshtml" />
     <Content Include="Views\Compte\CreerCompte.cshtml" />
+    <Content Include="Views\Sondage\CreerSondage.cshtml" />
+    <Content Include="Views\Sondage\Index.cshtml" />
+    <Content Include="Views\Compte\ModifierCompte.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -17,9 +17,11 @@ namespace SondageSoiree.Models
 
         void CreerRestaurant(Restaurant r);
 
-        int CreerSondage(DateTime date);
+        void CreerSondage(Sondage s);
 
         void ModifierRestaurant(int idResto, string nom, string adresse, string telephone, string email);
+
+        void ModifierCompte(int id, string nom, string prenom, string password);
 
         Eleve RenvoieEtudiant(int idEtudiant);
    
@@ -29,11 +31,15 @@ namespace SondageSoiree.Models
 
         IList<Restaurant> RenvoieTousLesRestaurants();
 
+        IList<Sondage> RenvoieTousLesSondages();
+
         Restaurant RenvoieRestaurant(int idRestaurant);
 
         bool RestaurantExist(string nom);
 
         bool RestaurantExist(string nom, int id);
+
+        bool SondageExist(string nom);
 
         bool VoteExist(int idSondage, int idEtudiant);
 
