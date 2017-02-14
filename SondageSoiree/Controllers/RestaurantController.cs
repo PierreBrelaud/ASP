@@ -24,13 +24,13 @@ namespace SondageSoiree.Controllers
             return View(dal.RenvoieTousLesRestaurants());
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult CreerRestaurant()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult ModifierRestaurant(int id)
         {
             Restaurant r = dal.RenvoieRestaurant(id);

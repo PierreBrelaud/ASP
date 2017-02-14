@@ -8,8 +8,13 @@
     <title>Index</title>
 </head>
 <body>
+    <h4>Liste des restaurants</h4>
+    <hr />
     <p>
-        @Html.ActionLink("Create New", "CreerRestaurant")
+        @if (User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Créer un nouveau restaurant", "CreerRestaurant")
+        }
     </p>
     <table class="table">
         <tr>
@@ -43,8 +48,12 @@
                 @Html.DisplayFor(modelItem => item.Telephone)
             </td>
             <td>
-                @Html.ActionLink("Edit", "ModifierRestaurant", new { id=item.Id }) |
-                @Html.ActionLink("Details", "AfficherRestaurant", new { id=item.Id }) 
+                @if (User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Modifier", "ModifierRestaurant", new { id=item.Id })
+                }
+                @Html.ActionLink("Detail", "AfficherRestaurant", new { id = item.Id })
+                
             </td>
         </tr>
     }

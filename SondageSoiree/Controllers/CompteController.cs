@@ -41,7 +41,7 @@ namespace SondageSoiree.Controllers
             }
             else
             {
-                IdentitySignin(e);
+                IdentitySignin(dal.RenvoieEtudiant(e.Nom));
                 return RedirectToAction("Index","Restaurant");
             }
         }
@@ -71,9 +71,11 @@ namespace SondageSoiree.Controllers
         private void IdentitySignin(Eleve eleve)
         {
             var claims = new List<Claim>();
+            if (eleve.Role != null) claims.Add(new Claim(ClaimTypes.Role, eleve.Role));
             // create required claims 
             claims.Add(new Claim(ClaimTypes.NameIdentifier, eleve.Id.ToString())); claims.Add(new Claim(ClaimTypes.Name, eleve.Nom));
             var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie); HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties() { AllowRefresh = true, IsPersistent = true, ExpiresUtc = DateTime.UtcNow.AddDays(7) }, identity);
+            
         }
         private void IdentitySignout()
         {

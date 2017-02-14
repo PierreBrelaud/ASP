@@ -22,6 +22,8 @@ namespace SondageSoiree.Models
         void ModifierRestaurant(int idResto, string nom, string adresse, string telephone, string email);
 
         Eleve RenvoieEtudiant(int idEtudiant);
+   
+        Eleve RenvoieEtudiant(string nom);
 
         IList<Resultat> RenvoieResultat(int idSondage);
 

@@ -73,6 +73,12 @@ namespace SondageSoiree.Models
             s.Dispose();
         }
 
+        public Eleve RenvoieEtudiant(string nom)
+        {
+            Eleve e = s.Eleves.First(c => c.Nom == nom);
+            return e;
+        }
+
         public Eleve RenvoieEtudiant(int idEtudiant)
         {
             throw new NotImplementedException();

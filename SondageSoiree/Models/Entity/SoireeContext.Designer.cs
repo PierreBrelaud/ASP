@@ -1,4 +1,4 @@
-﻿// La génération de code T4 est activée pour le modèle '\\srv-data\homes$\etudiants\brelaudp\Documents\Visual Studio 2015\Projects\OrganisationSoiree\SondageSoiree\Models\Entity\SoireeContext.edmx'. 
+﻿// La génération de code T4 est activée pour le modèle 'W:\Cours\ASP\OrganisationSoiree\SondageSoiree\Models\Entity\SoireeContext.edmx'. 
 // Pour activer la génération de code héritée, définissez la valeur de la propriété
 // du concepteur 'Stratégie de génération de code' sur 'ObjectContext hérité'. Cette propriété est disponible dans la fenêtre Propriétés lorsque le modèle
 //  est ouvert dans le concepteur.

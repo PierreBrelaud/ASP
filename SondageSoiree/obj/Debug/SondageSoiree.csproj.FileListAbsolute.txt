@@ -223,3 +223,4 @@ W:\Cours\ASP\OrganisationSoiree\SondageSoiree\bin\fr\Microsoft.Owin.Security.Twi
 W:\Cours\ASP\OrganisationSoiree\SondageSoiree\bin\fr\Microsoft.Owin.Security.MicrosoftAccount.resources.dll
 W:\Cours\ASP\OrganisationSoiree\SondageSoiree\obj\Debug\SondageSoiree.dll
 W:\Cours\ASP\OrganisationSoiree\SondageSoiree\obj\Debug\SondageSoiree.pdb
+W:\Cours\ASP\OrganisationSoiree\SondageSoiree\obj\Debug\SondageSoiree.csprojResolveAssemblyReference.cache

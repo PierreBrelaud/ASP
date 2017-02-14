@@ -9,6 +9,7 @@
     <Property Name="Prenom" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
     <NavigationProperty Name="Votes" Relationship="Self.FK_Vote_Eleve" FromRole="Eleve" ToRole="Vote" />
+    <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <EntityType Name="Restaurant">
     <Key>

@@ -8,6 +8,7 @@
     <Property Name="Nom" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Prenom" Type="varchar" MaxLength="100" Nullable="false" />
     <Property Name="Password" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Role" Type="varchar" MaxLength="50" />
   </EntityType>
   <EntityType Name="Restaurant">
     <Key>
