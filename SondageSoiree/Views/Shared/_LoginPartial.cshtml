@@ -6,7 +6,8 @@
     {
 
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Bonjour " + User.Identity.GetUserName() + " !", "ModifierCompte", "Compte", new { id = User.Identity.GetUserId() })</li>
+        <li>@Html.ActionLink("Bonjour " + User.Identity.GetUserName()  +  " !", "ModifierCompte",
+    "Compte", routeValues: new { id = Int32.Parse(User.Identity.GetUserId()) }, htmlAttributes:  new { @class = "" })</li>
         <li>@Html.ActionLink("Se déconnecter", "LogOff", "Compte")</li>
     </ul>
     }

@@ -21,7 +21,7 @@ namespace SondageSoiree.Models
 
         void ModifierRestaurant(int idResto, string nom, string adresse, string telephone, string email);
 
-        void ModifierCompte(int id, string nom, string prenom, string password);
+        void ModifierCompte(int id, string nom, string prenom);
 
         Eleve RenvoieEtudiant(int idEtudiant);
    

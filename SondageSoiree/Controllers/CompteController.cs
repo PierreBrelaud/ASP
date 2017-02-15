@@ -68,22 +68,6 @@ namespace SondageSoiree.Controllers
             }
         }
 
-        private void IdentitySignin(Eleve eleve)
-        {
-            var claims = new List<Claim>();
-            if (eleve.Role != null) claims.Add(new Claim(ClaimTypes.Role, eleve.Role));
-            // create required claims 
-            claims.Add(new Claim(ClaimTypes.NameIdentifier, eleve.Id.ToString()));
-            claims.Add(new Claim(ClaimTypes.Name, eleve.Nom));
-            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
-            HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties() { AllowRefresh = true, IsPersistent = true, ExpiresUtc = DateTime.UtcNow.AddDays(7) }, identity);
-            
-        }
-        private void IdentitySignout()
-        {
-            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie, DefaultAuthenticationTypes.ExternalCookie);
-        }
-
 
         public ActionResult ModifierCompte(int id)
         {
@@ -101,9 +85,25 @@ namespace SondageSoiree.Controllers
             }
             else
             {
-                dal.ModifierCompte(e.Id, e.Nom, e.Prenom, e.Password);
-                return RedirectToAction("Sondage","Index");
+                dal.ModifierCompte(e.Id, e.Nom, e.Prenom);
+                return RedirectToAction("Index","Sondage");
             }
+        }
+
+        private void IdentitySignin(Eleve eleve)
+        {
+            var claims = new List<Claim>();
+            if (eleve.Role != null) claims.Add(new Claim(ClaimTypes.Role, eleve.Role));
+            // create required claims 
+            claims.Add(new Claim(ClaimTypes.NameIdentifier, eleve.Id.ToString()));
+            claims.Add(new Claim(ClaimTypes.Name, eleve.Nom));
+            var identity = new ClaimsIdentity(claims, DefaultAuthenticationTypes.ApplicationCookie);
+            HttpContext.GetOwinContext().Authentication.SignIn(new AuthenticationProperties() { AllowRefresh = true, IsPersistent = true, ExpiresUtc = DateTime.UtcNow.AddDays(7) }, identity);
+
+        }
+        private void IdentitySignout()
+        {
+            HttpContext.GetOwinContext().Authentication.SignOut(DefaultAuthenticationTypes.ApplicationCookie, DefaultAuthenticationTypes.ExternalCookie);
         }
 
     }

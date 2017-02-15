@@ -77,13 +77,12 @@ namespace SondageSoiree.Models
             s.Dispose();
         }
 
-        public void ModifierCompte(int id, string nom, string prenom, string password)
+        public void ModifierCompte(int id, string nom, string prenom)
         {
             Eleve e = s.Eleves.First(c => c.Id == id);
 
             e.Nom = nom;
             e.Prenom = prenom;
-            e.Password = Crypto.HashPassword(password);
 
             s.SaveChanges();
             s.Dispose();
