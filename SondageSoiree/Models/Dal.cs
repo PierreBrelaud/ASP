@@ -30,9 +30,19 @@ namespace SondageSoiree.Models
             }
         }
 
-        public int AjouterVote(int idSondage, int idResto, int idEtudiant)
+        public void AjouterVote(int idSondage, List<int> restos, int idEtudiant)
         {
-            throw new NotImplementedException();
+            foreach (int idResto in restos)
+            {
+                Vote v = new Vote();
+                v.IdEtudiant = idEtudiant;
+                v.IdResto = idResto;
+                v.IdSondage = idSondage;
+                s.Votes.Add(v);
+
+                s.SaveChanges();
+            }
+
         }
 
         public Eleve Authentifier(Eleve eleve)
@@ -161,7 +171,6 @@ namespace SondageSoiree.Models
                 return true;
             else
                 return false;
-            s.Dispose();
 
         }
 
@@ -191,7 +200,11 @@ namespace SondageSoiree.Models
 
         public bool VoteExist(int idSondage, int idEtudiant)
         {
-            throw new NotImplementedException();
+            int result = s.Votes.Count(c => c.IdSondage == idSondage & c.IdEtudiant == idEtudiant );
+            if (result != 0)
+                return true;
+            else
+                return false;
         }
     }
 }

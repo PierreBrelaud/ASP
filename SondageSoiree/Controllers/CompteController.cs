@@ -85,7 +85,12 @@ namespace SondageSoiree.Controllers
             }
             else
             {
+                var user = User.Identity as ClaimsIdentity;
+                user.RemoveClaim(user.Claims.First(s => s.Type == ClaimTypes.Name));
+                user.AddClaim(new Claim(ClaimTypes.Name, e.Nom));
+
                 dal.ModifierCompte(e.Id, e.Nom, e.Prenom);
+                
                 return RedirectToAction("Index","Sondage");
             }
         }
