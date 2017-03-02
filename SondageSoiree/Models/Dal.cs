@@ -20,6 +20,46 @@ namespace SondageSoiree.Models
             s.Dispose();
         }
 
+        public List<Restaurant> ResultatVote(int id)
+        {
+            List<int> listeIdResto = new List<int>();
+            List<Restaurant> listeResto = new List<Restaurant>();
+
+            using (var ctx = new SoireeContext())
+            {
+                foreach (var idR in ctx.Restaurants)
+                    listeIdResto.Add(idR.Id);
+            }
+
+            foreach (int idR in listeIdResto)
+            {
+                string nomResto = s.Restaurants.FirstOrDefault(x => x.Id == idR).Nom;
+                int nbVotes = s.Votes.Where(x => x.IdSondage == id && x.IdResto == idR).Count();
+                Restaurant r = new Restaurant();
+                r.Id = idR;
+                r.Nom = nomResto;
+                r.NbVotes = nbVotes;
+
+                listeResto.Add(r);
+            }
+
+            List<Restaurant> listeRestoSort = listeResto.OrderBy(o => o.NbVotes).ToList();
+
+            return listeRestoSort;
+        }
+        public IList<Restaurant> RenvoieTousLesRestaurants()
+        {
+            List<Restaurant> r = new List<Restaurant>();
+            using (var ctx = new SoireeContext())
+            {
+                foreach (var resto in ctx.Restaurants)
+                {
+                    r.Add(resto);
+                }
+            }
+            return r;
+        }
+
         public void AjouterEtudiant(Eleve e)
         {
             using (var ctx = new SoireeContext())
@@ -126,18 +166,7 @@ namespace SondageSoiree.Models
             throw new NotImplementedException();
         }
 
-        public IList<Restaurant> RenvoieTousLesRestaurants()
-        {
-            List<Restaurant> r = new List<Restaurant>();
-            using (var ctx = new SoireeContext())
-            {
-                foreach(var resto in ctx.Restaurants)
-                {
-                    r.Add(resto);
-                }
-            }
-            return r;
-        }
+
 
         public IList<Sondage> RenvoieTousLesSondages()
         {

@@ -37,6 +37,7 @@ namespace SondageSoiree.Controllers
             return View(r);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult ModifierRestaurant(Restaurant r)
         {
@@ -59,6 +60,7 @@ namespace SondageSoiree.Controllers
             return View(dal.RenvoieRestaurant(r.Id));
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult CreerRestaurant(Restaurant poResto)
         {       

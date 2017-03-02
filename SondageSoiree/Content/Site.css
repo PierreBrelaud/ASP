@@ -22,3 +22,42 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+/*Histogramme resultat vote*/
+#resultat-vote-content {
+    text-align: center;
+    margin-top : 10vmin;
+    width : 80%;
+}
+.resultat-vote-resto
+{
+    margin: auto 1vmin;
+    display : inline-block;
+}
+
+.resultat-vote-resto-nom{
+    color : #2980b9;
+    font-size: 2vmin;
+}
+
+.bar {
+    margin-top: 13vmin;
+    width : 10vmin;
+    position: relative;
+    margin-bottom : 16vmin;
+}
+
+.bar .bar-bar {
+    width : 10vmin;
+    height: 0;
+    background-color: #3498db;
+    bottom :0; 
+    position: absolute;
+    display: flex;
+}
+
+
+.nbvotes {
+    margin: auto;
+}

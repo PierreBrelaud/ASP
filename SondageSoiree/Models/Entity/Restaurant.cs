@@ -19,7 +19,15 @@ namespace SondageSoiree.Models.Entity
         {
             this.Votes = new HashSet<Vote>();
         }
-    
+
+        public int NbVotes { get; set; }
+        public Restaurant (int id, string nom, int nbVote)
+        {
+            id = this.Id;
+            nom = this.Nom;
+            nbVote = 0;
+        }
+         
         public int Id { get; set; }
         public string Nom { get; set; }
         public string Email { get; set; }

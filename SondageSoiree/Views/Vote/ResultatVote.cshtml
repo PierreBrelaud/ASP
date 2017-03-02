@@ -1,45 +1,28 @@
-﻿@model IEnumerable<SondageSoiree.Models.Entity.Vote>
+﻿@model IEnumerable<SondageSoiree.Models.Entity.Restaurant>
 
 @{
     ViewBag.Title = "ResultatVote";
 }
 
-<h2>ResultatVote</h2>
+<h2>Résultats du vote</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Eleve.Nom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Restaurant.Nom)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Sondage.Nom)
-        </th>
-        <th></th>
-    </tr>
+<div id="resultat-vote-content">
+    @foreach (var item in Model)
+    {
+        <div class="resultat-vote-resto" >
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Eleve.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Restaurant.Nom)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Sondage.Nom)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+            <div class="bar" number="@Html.DisplayFor(modelItem => item.NbVotes)">
+                <div class="bar-bar">
+                    <div class="nbvotes">
+                        @Html.DisplayFor(modelItem => item.NbVotes)
+                    </div>
+                </div>
+            </div>
 
-</table>
+            <div class="resultat-vote-resto-nom">
+                @Html.DisplayFor(modelItem => item.Nom)
+            </div>                
+        </div>
+    }
+</div>
+

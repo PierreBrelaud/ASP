@@ -51,6 +51,7 @@ namespace SondageSoiree.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult CreerCompte(Eleve e)
         {
@@ -75,6 +76,7 @@ namespace SondageSoiree.Controllers
             return View(e);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult ModifierCompte(Eleve e)
         {

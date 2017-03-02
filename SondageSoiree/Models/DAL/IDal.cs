@@ -11,6 +11,8 @@ namespace SondageSoiree.Models
     {
         void AjouterEtudiant(Eleve e);
 
+        List<Restaurant> ResultatVote(int id);
+
         void AjouterVote(int idSondage, List<int> restos, int idEtudiant);
 
         Eleve Authentifier(Eleve eleve);

@@ -23,12 +23,12 @@ namespace SondageSoiree.Controllers
             int userId = int.Parse(((ClaimsIdentity)User.Identity).Claims.First(s => s.Type == ClaimTypes.NameIdentifier).Value);
 
             if (dal.VoteExist(id, userId) == true)
-                    return RedirectToAction("Index","Restaurant");
-                //return RedirectToAction("ResultatVote", "Vote", routeValues: new { id = id});
+                return RedirectToAction("ResultatVote", "Vote", routeValues: new { id = id});
             else
                 return View(new VoteViewModel(dal.RenvoieTousLesRestaurants(), id));
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult CreerVote(VoteViewModel v)
         {
@@ -44,7 +44,7 @@ namespace SondageSoiree.Controllers
 
         public ActionResult ResultatVote(int id)
         {
-            return View();
+            return View(dal.ResultatVote(id));
         }
 
     }

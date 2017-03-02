@@ -33,6 +33,7 @@ namespace SondageSoiree.Controllers
             return View();
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult CreerSondage(Sondage sondage)
         {
