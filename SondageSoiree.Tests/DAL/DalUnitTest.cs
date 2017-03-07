@@ -1,7 +1,10 @@
-﻿using System;
-using System.Text;
-using System.Collections.Generic;
+﻿using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SondageSoiree.Tests.Entity;
+using SondageSoiree;
+using SondageSoiree.Models;
+using System.Collections.Generic;
+using System;
 
 namespace SondageSoiree.Tests.DAL
 {
@@ -11,12 +14,15 @@ namespace SondageSoiree.Tests.DAL
     [TestClass]
     public class DalUnitTest
     {
+        private SoireeContextTest s;
+        private Dal d;
         public DalUnitTest()
         {
-            //
-            // TODO: ajoutez ici la logique du constructeur
-            //
+            d = new Dal(); 
+            s = new SoireeContextTest();
         }
+
+
 
         private TestContext testContextInstance;
 
@@ -58,12 +64,36 @@ namespace SondageSoiree.Tests.DAL
         //
         #endregion
 
+
         [TestMethod]
-        public void TestMethod1()
+        public void CreerSondageTest()
         {
-            //
-            // TODO: ajoutez ici la logique du test
-            //
+            int nbSondages = s.Sondage.Count();
+
+            Models.Entity.Sondage son = new Models.Entity.Sondage();
+            son.Nom = "TestUnitaire";
+            son.Date = new DateTime(2017, 06, 06);
+            d.CreerSondage(son);
+
+            int nbSondages2 = s.Sondage.Count();
+
+            Assert.AreEqual(nbSondages + 1, nbSondages2);
+        }
+
+        [TestMethod]
+        public void AjouterVoteTest()
+        {
+            int nb = s.Vote.Count();
+
+            //Test avec ajout d'un vote
+            List<int> l = new List<int>();
+            l.Add(1);
+            l.Add(2);
+
+            d.AjouterVote(1, l, 7);
+
+            int nb2 = s.Vote.Count();
+            Assert.AreEqual(nb + l.Count(), nb2);
         }
     }
 }

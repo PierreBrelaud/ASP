@@ -4,6 +4,7 @@ using SondageSoiree.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Claims;
 using System.Web;
 using System.Web.Mvc;
@@ -18,8 +19,9 @@ namespace SondageSoiree.Controllers
             this.dal = dal;
         }
 
-        public ActionResult CreerVote(int id)
+        public ActionResult CreerVote(int? id)
         {
+
             int userId = int.Parse(((ClaimsIdentity)User.Identity).Claims.First(s => s.Type == ClaimTypes.NameIdentifier).Value);
 
             if (dal.VoteExist(id, userId) == true)
@@ -42,8 +44,9 @@ namespace SondageSoiree.Controllers
 
         }
 
-        public ActionResult ResultatVote(int id)
+        public ActionResult ResultatVote(int? id)
         {
+            if (id == null) { return new HttpStatusCodeResult(HttpStatusCode.BadRequest); }
             return View(dal.ResultatVote(id));
         }
 

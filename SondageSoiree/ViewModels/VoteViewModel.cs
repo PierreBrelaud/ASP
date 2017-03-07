@@ -18,6 +18,9 @@ namespace SondageSoiree.ViewModels
 
     public class VoteViewModel : IValidatableObject
     {
+        private IList<Restaurant> list;
+        private int? id;
+
         [Key]
         public int IdSondage { get; set; }
 
@@ -45,6 +48,12 @@ namespace SondageSoiree.ViewModels
             {
                 Choix.Add(new ChoixRestoViewModel() { Id = r.Id, IsSelected = false, Nom = r.Nom });
             }
+        }
+
+        public VoteViewModel(IList<Restaurant> list, int? id)
+        {
+            this.list = list;
+            this.id = id;
         }
 
         public List<ChoixRestoViewModel> Choix { get; private set; }

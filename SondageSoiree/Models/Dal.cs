@@ -20,7 +20,7 @@ namespace SondageSoiree.Models
             s.Dispose();
         }
 
-        public List<Restaurant> ResultatVote(int id)
+        public List<Restaurant> ResultatVote(int? id)
         {
             List<int> listeIdResto = new List<int>();
             List<Restaurant> listeResto = new List<Restaurant>();
@@ -122,7 +122,7 @@ namespace SondageSoiree.Models
             r.Adresse = adresse;
             r.Telephone = telephone;
             r.Email = email;
-
+            
             s.SaveChanges();
             s.Dispose();
         }
@@ -151,7 +151,7 @@ namespace SondageSoiree.Models
             
         }
 
-        public Restaurant RenvoieRestaurant(int idRestaurant)
+        public Restaurant RenvoieRestaurant(int? idRestaurant)
         {
             Restaurant r = new Restaurant();
             using (var ctx = new SoireeContext())
@@ -227,7 +227,7 @@ namespace SondageSoiree.Models
             }
         }
 
-        public bool VoteExist(int idSondage, int idEtudiant)
+        public bool VoteExist(int? idSondage, int idEtudiant)
         {
             int result = s.Votes.Count(c => c.IdSondage == idSondage & c.IdEtudiant == idEtudiant );
             if (result != 0)

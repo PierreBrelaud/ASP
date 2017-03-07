@@ -11,7 +11,7 @@ namespace SondageSoiree.Models
     {
         void AjouterEtudiant(Eleve e);
 
-        List<Restaurant> ResultatVote(int id);
+        List<Restaurant> ResultatVote(int? id);
 
         void AjouterVote(int idSondage, List<int> restos, int idEtudiant);
 
@@ -35,7 +35,7 @@ namespace SondageSoiree.Models
 
         IList<Sondage> RenvoieTousLesSondages();
 
-        Restaurant RenvoieRestaurant(int idRestaurant);
+        Restaurant RenvoieRestaurant(int? idRestaurant);
 
         bool RestaurantExist(string nom);
 
@@ -43,7 +43,7 @@ namespace SondageSoiree.Models
 
         bool SondageExist(string nom);
 
-        bool VoteExist(int idSondage, int idEtudiant);
+        bool VoteExist(int? idSondage, int idEtudiant);
 
         bool EleveExist(string nom, int id);
     }

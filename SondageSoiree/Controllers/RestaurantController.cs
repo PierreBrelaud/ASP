@@ -9,6 +9,8 @@ using System.Web.Mvc;
 
 namespace SondageSoiree.Controllers
 {
+
+     
     public class RestaurantController : Controller
     {
         private readonly IDal dal;

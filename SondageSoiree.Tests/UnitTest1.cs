@@ -7,8 +7,27 @@ namespace SondageSoiree.Tests
     public class UnitTest1
     {
         [TestMethod]
-        public void TestMethod1()
+        public void CreerSondageTest()
         {
+
+        }
+
+        [TestMethod]
+        public void AjouterVoteTest()
+        {
+
+        }
+
+        [TestMethod]
+        public void RenvoieResultatTest()
+        {
+
+        }
+
+        [TestMethod]
+        public void RenvoieTousLesSondagesTest()
+        {
+
         }
     }
 }
